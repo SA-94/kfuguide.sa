@@ -1,0 +1,1107 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
+  <meta name="theme-color" content="#0b1220" />
+  <title>مكافأة طلاب جامعة الملك فيصل | لوحة مواعيد الصرف</title>
+  <style>
+    :root{
+      --bg1:#070a12;
+      --bg2:#0b1220;
+      --card: rgba(255,255,255,.08);
+      --card2: rgba(255,255,255,.12);
+      --stroke: rgba(255,255,255,.14);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.62);
+      --gold: #d7b56d;
+      --green: #32d296;
+      --red: #ff5a7a;
+      --shadow: 0 30px 80px rgba(0,0,0,.55);
+      --radius: 18px;
+      --radius2: 26px;
+      --font: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Tahoma, Arial;
+    }
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: var(--font);
+      color: var(--text);
+      background:
+        radial-gradient(1200px 800px at 15% 15%, rgba(215,181,109,.16), transparent 55%),
+        radial-gradient(1000px 700px at 85% 20%, rgba(50,210,150,.14), transparent 55%),
+        radial-gradient(1100px 800px at 65% 90%, rgba(255,90,122,.10), transparent 55%),
+        linear-gradient(180deg, var(--bg1), var(--bg2));
+      overflow-x:hidden;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    .noise{
+      position:fixed; inset:0;
+      pointer-events:none;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.28'/%3E%3C/svg%3E");
+      opacity:.05;
+      mix-blend-mode:overlay;
+      animation: floatNoise 8s linear infinite;
+    }
+    @keyframes floatNoise{ from{ transform:translate3d(0,0,0);} to{ transform:translate3d(-80px,60px,0);} }
+
+    .container{
+      width:min(1200px, 92vw);
+      margin: 0 auto;
+      padding: 18px 0 40px;
+    }
+
+    header{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(18px);
+      background: linear-gradient(180deg, rgba(7,10,18,.82), rgba(7,10,18,.40));
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .nav{
+      width:min(1200px, 92vw);
+      margin: 0 auto;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding: 12px 0;
+      gap: 12px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      min-width: 220px;
+    }
+    .logo{
+      width:44px; height:44px; border-radius: 14px;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,.25), transparent 45%),
+        linear-gradient(135deg, rgba(215,181,109,.95), rgba(50,210,150,.65));
+      box-shadow: 0 14px 40px rgba(215,181,109,.22);
+      border: 1px solid rgba(255,255,255,.18);
+      display:grid; place-items:center;
+      position:relative;
+      overflow:hidden;
+      flex:0 0 auto;
+    }
+    .logo::after{
+      content:"";
+      position:absolute; inset:-40%;
+      background: radial-gradient(circle, rgba(255,255,255,.35), transparent 60%);
+      transform: rotate(35deg);
+      animation: shine 3.6s ease-in-out infinite;
+      opacity:.55;
+    }
+    @keyframes shine{
+      0%,100%{ transform: translateX(-12%) rotate(35deg); opacity:.25;}
+      50%{ transform: translateX(12%) rotate(35deg); opacity:.55;}
+    }
+    .logo span{ font-weight:900; letter-spacing:.5px; color:#071018; }
+    .brand h1{
+      margin:0;
+      font-size: 14px;
+      line-height: 1.2;
+      font-weight: 900;
+    }
+    .brand p{
+      margin:0;
+      font-size:12px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .nav-actions{
+      display:flex; gap:10px; align-items:center; flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    .btn{
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 14px;
+      cursor:pointer;
+      font-weight:800;
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
+      transition: transform .15s ease, background .2s ease, border-color .2s ease;
+      user-select:none;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.10); border-color: rgba(255,255,255,.22); }
+    .btn:active{ transform: translateY(0px) scale(.99); }
+    .btn.primary{
+      background: linear-gradient(135deg, rgba(215,181,109,.95), rgba(50,210,150,.70));
+      color:#071018;
+      border-color: rgba(255,255,255,.22);
+      box-shadow: 0 18px 50px rgba(50,210,150,.12), 0 18px 50px rgba(215,181,109,.12);
+    }
+    .pill{
+      padding: 9px 12px;
+      border-radius: 999px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      display:flex; align-items:center; gap:8px;
+      white-space:nowrap;
+    }
+    .dot{ width:8px; height:8px; border-radius:50%; background: var(--green); box-shadow:0 0 18px rgba(50,210,150,.55); }
+    .ico{ font-weight: 950; opacity: .95; }
+
+    .hero{
+      padding: 18px 0 10px;
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 16px;
+      align-items:stretch;
+    }
+    @media (max-width: 980px){
+      .hero{ grid-template-columns:1fr; }
+      .brand{ min-width:auto; }
+      .pill{ display:none; }
+    }
+
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.06));
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+      overflow:hidden;
+      position:relative;
+    }
+    .card::before{
+      content:"";
+      position:absolute; inset:-2px;
+      background: radial-gradient(600px 240px at 25% 20%, rgba(215,181,109,.14), transparent 60%),
+                  radial-gradient(540px 240px at 80% 30%, rgba(50,210,150,.12), transparent 60%),
+                  radial-gradient(520px 240px at 70% 100%, rgba(255,90,122,.10), transparent 60%);
+      filter: blur(2px);
+      pointer-events:none;
+    }
+    .card > *{ position:relative; }
+
+    .hero-left{
+      padding: 18px;
+      min-height: 300px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      gap: 12px;
+    }
+    .kicker{
+      display:flex; gap:10px; align-items:center; flex-wrap:wrap;
+      margin-bottom:6px;
+    }
+    .kicker .tag{
+      font-size:12px;
+      font-weight:900;
+      color: rgba(255,255,255,.84);
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.14);
+      padding: 7px 10px;
+      border-radius: 999px;
+    }
+    .kicker .tag.gold{
+      background: rgba(215,181,109,.12);
+      border-color: rgba(215,181,109,.22);
+      color: rgba(255,255,255,.92);
+    }
+    .title{
+      margin:0;
+      font-size: clamp(22px, 3vw, 34px);
+      letter-spacing: .2px;
+      line-height: 1.25;
+      font-weight: 950;
+    }
+    .subtitle{
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.9;
+      max-width: 72ch;
+    }
+    .hero-actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      margin-top: 12px;
+    }
+
+    .hero-right{
+      padding: 14px;
+      display:flex;
+      flex-direction:column;
+      gap: 12px;
+    }
+
+    .nextBox{
+      padding: 14px;
+      border-radius: var(--radius2);
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      display:grid;
+      gap: 10px;
+    }
+    .nextTop{
+      display:flex; align-items:flex-start; justify-content:space-between; gap:10px;
+    }
+    .nextTop h3{
+      margin:0;
+      font-size: 14px;
+      font-weight: 950;
+      color: rgba(255,255,255,.88);
+    }
+    .nextTop p{
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.8;
+    }
+    .badge{
+      display:inline-flex; align-items:center; gap:8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 950;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      white-space:nowrap;
+    }
+    .badge.good{ border-color: rgba(50,210,150,.25); background: rgba(50,210,150,.10); }
+    .badge.warn{ border-color: rgba(215,181,109,.26); background: rgba(215,181,109,.10); }
+    .badge.bad{ border-color: rgba(255,90,122,.28); background: rgba(255,90,122,.10); }
+
+    /* Progress ring */
+    .ringWrap{
+      display:grid;
+      place-items:center;
+      padding: 10px 0 2px;
+    }
+    .ring{
+      width: 140px;
+      height: 140px;
+      border-radius: 999px;
+      display:grid;
+      place-items:center;
+      background:
+        radial-gradient(circle at 50% 50%, rgba(0,0,0,.18) 55%, transparent 56%),
+        conic-gradient(var(--green) var(--p), rgba(255,255,255,.10) 0);
+      border: 1px solid rgba(255,255,255,.14);
+      box-shadow: 0 18px 60px rgba(0,0,0,.35);
+      position:relative;
+    }
+    .ring::after{
+      content:"";
+      position:absolute;
+      inset: 12px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.14), transparent 55%),
+                  rgba(10,14,24,.55);
+      border: 1px solid rgba(255,255,255,.10);
+      backdrop-filter: blur(10px);
+    }
+    .ringContent{
+      position:relative;
+      text-align:center;
+      z-index:1;
+    }
+    .ringContent b{
+      display:block;
+      font-size: 22px;
+      font-weight: 950;
+      letter-spacing:.4px;
+    }
+    .ringContent span{
+      display:block;
+      margin-top: 6px;
+      font-size: 12px;
+      font-weight: 900;
+      color: var(--muted);
+    }
+
+    .countdown{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+    .cd{
+      padding: 12px 10px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.12);
+      text-align:center;
+      min-height: 64px;
+      display:grid;
+      place-items:center;
+      gap:4px;
+    }
+    .cd b{
+      display:block;
+      font-size: 18px;
+      font-weight: 950;
+      letter-spacing: .5px;
+      line-height: 1.1;
+    }
+    .cd span{
+      display:block;
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 800;
+    }
+
+    .mini{
+      display:flex; gap:10px; flex-wrap:wrap;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.9;
+    }
+    .mini strong{ color: rgba(255,255,255,.86); }
+    .divider{
+      height:1px;
+      background: rgba(255,255,255,.10);
+      margin: 6px 0;
+    }
+
+    .section{
+      margin-top: 16px;
+      padding: 16px;
+    }
+    .sectionHead{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap: 12px;
+      flex-wrap:wrap;
+      margin-bottom: 12px;
+    }
+    .sectionHead h2{
+      margin:0;
+      font-size: 16px;
+      font-weight: 950;
+      letter-spacing:.2px;
+    }
+    .sectionHead p{
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.9;
+      max-width: 78ch;
+    }
+
+    .controls{
+      display:flex;
+      gap: 10px;
+      flex-wrap:wrap;
+      align-items:center;
+      width:100%;
+      margin-top: 10px;
+    }
+    .input{
+      flex: 1 1 260px;
+      min-width: 220px;
+      display:flex;
+      gap: 10px;
+      align-items:center;
+      padding: 12px 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+    }
+    .input input{
+      width:100%;
+      outline:none;
+      border:none;
+      background: transparent;
+      color: var(--text);
+      font-weight: 800;
+      font-size: 14px;
+    }
+    .select{
+      flex: 0 1 220px;
+      min-width: 190px;
+      padding: 12px 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      font-weight: 900;
+      font-size: 14px;
+      outline:none;
+      cursor:pointer;
+    }
+
+    /* Desktop table */
+    .tableWrap{ overflow:auto; padding-bottom:6px; }
+    table{
+      width:100%;
+      border-collapse:separate;
+      border-spacing:0 10px;
+      min-width: 760px;
+    }
+    thead th{
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 900;
+      text-align:right;
+      padding: 0 12px 8px;
+      white-space:nowrap;
+    }
+    tbody tr{
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      box-shadow: 0 18px 40px rgba(0,0,0,.25);
+      overflow:hidden;
+    }
+    tbody tr td{
+      padding: 14px 12px;
+      border-top: 1px solid rgba(255,255,255,.10);
+      border-bottom: 1px solid rgba(255,255,255,.10);
+      font-weight: 900;
+      font-size: 13px;
+    }
+    tbody tr td:first-child{
+      border-right: 1px solid rgba(255,255,255,.10);
+      border-top-right-radius: 16px;
+      border-bottom-right-radius: 16px;
+    }
+    tbody tr td:last-child{
+      border-left: 1px solid rgba(255,255,255,.10);
+      border-top-left-radius: 16px;
+      border-bottom-left-radius: 16px;
+    }
+    .chip{
+      display:inline-flex; align-items:center; gap:8px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.10);
+      font-size:12px;
+      font-weight: 950;
+      white-space:nowrap;
+    }
+    .chip.gold{ border-color: rgba(215,181,109,.28); background: rgba(215,181,109,.10); }
+    .chip.green{ border-color: rgba(50,210,150,.30); background: rgba(50,210,150,.10); }
+
+    .note{
+      margin-top: 10px;
+      padding: 12px 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 2.0;
+    }
+    .note b{ color: rgba(255,255,255,.88); }
+
+    footer{
+      margin-top: 18px;
+      padding: 22px 0 28px;
+      color: rgba(255,255,255,.60);
+      font-size: 12px;
+    }
+    .footerBox{
+      width:min(1200px, 92vw);
+      margin: 0 auto;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap: 10px;
+      flex-wrap:wrap;
+      border-top: 1px solid rgba(255,255,255,.08);
+      padding-top: 16px;
+    }
+    .footerBox .rights{
+      display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+    }
+    .kfu{ font-weight: 950; color: rgba(255,255,255,.78); }
+
+    /* Mobile: convert table to cards (100% no horizontal scroll) */
+    .cards{ display:none; }
+    @media (max-width: 700px){
+      .container{ width: min(100%, 94vw); }
+      .nav{ padding: 10px 0; }
+      .brand h1{ font-size: 13px; }
+      .brand p{ font-size: 11px; }
+      .btn{ padding: 12px 12px; border-radius: 16px; }
+      .hero-left{ padding: 16px; }
+      .hero-right{ padding: 12px; }
+      .countdown{ gap: 8px; }
+      .cd{ min-height: 62px; }
+      .tableWrap{ display:none; }
+      table{ display:none; }
+      .cards{ display:grid; gap: 10px; }
+      .payCard{
+        border-radius: 18px;
+        border: 1px solid rgba(255,255,255,.12);
+        background: rgba(255,255,255,.06);
+        padding: 12px;
+      }
+      .payTop{
+        display:flex; justify-content:space-between; align-items:flex-start; gap:10px;
+        margin-bottom: 10px;
+      }
+      .payTitle{
+        font-weight: 950;
+        font-size: 14px;
+      }
+      .paySub{
+        margin-top: 4px;
+        color: var(--muted);
+        font-weight: 800;
+        font-size: 12px;
+        line-height: 1.8;
+      }
+      .grid{
+        display:grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        margin-top: 10px;
+      }
+      .kv{
+        border: 1px solid rgba(255,255,255,.10);
+        background: rgba(0,0,0,.10);
+        border-radius: 14px;
+        padding: 10px;
+      }
+      .kv span{
+        display:block;
+        color: var(--muted);
+        font-size: 11px;
+        font-weight: 900;
+      }
+      .kv b{
+        display:block;
+        margin-top: 6px;
+        font-size: 13px;
+        font-weight: 950;
+      }
+    }
+
+    /* Modal */
+    .modal-backdrop{
+      position:fixed; inset:0;
+      background: rgba(0,0,0,.58);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding: 14px;
+      z-index: 200;
+    }
+    .modal{
+      width: min(760px, 96vw);
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.06));
+      backdrop-filter: blur(18px);
+      box-shadow: 0 40px 120px rgba(0,0,0,.65);
+      overflow:hidden;
+      position:relative;
+      max-height: 86vh;
+      display:flex;
+      flex-direction:column;
+    }
+    .modal header{
+      position:relative;
+      top:auto;
+      background: transparent;
+      border-bottom: 1px solid rgba(255,255,255,.10);
+      backdrop-filter:none;
+    }
+    .modalHead{
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 14px 16px;
+      gap: 10px;
+    }
+    .modalHead h3{
+      margin:0;
+      font-size: 14px;
+      font-weight: 950;
+    }
+    .modalBody{
+      padding: 14px 16px 16px;
+      color: rgba(255,255,255,.82);
+      font-size: 13px;
+      line-height: 2.05;
+      overflow:auto;
+    }
+    .modalBody ul{ margin: 8px 0 0; padding: 0 18px 0 0; }
+    .close{
+      border:none;
+      background: rgba(255,255,255,.08);
+      color: rgba(255,255,255,.90);
+      border: 1px solid rgba(255,255,255,.14);
+      padding: 10px 12px;
+      border-radius: 14px;
+      cursor:pointer;
+      font-weight: 950;
+      touch-action: manipulation;
+    }
+    .modal-backdrop.show{ display:flex; }
+  </style>
+</head>
+
+<body>
+  <div class="noise"></div>
+
+  <header>
+    <div class="nav" role="navigation" aria-label="شريط التنقل">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"><span>KF</span></div>
+        <div>
+          <h1>مكافأة طلاب جامعة الملك فيصل</h1>
+          <p>لوحة فخمة • عدّاد + تقدّم • مناسبة 100% للجوال</p>
+        </div>
+      </div>
+
+      <div class="nav-actions">
+        <div class="pill" title="حالة الخدمة">
+          <span class="dot" aria-hidden="true"></span>
+          <span>جاهز • بيانات 2026</span>
+        </div>
+        <button class="btn" id="btnAbout"><span class="ico">ⓘ</span>تعريف</button>
+        <button class="btn primary" id="btnScroll"><span class="ico">↘</span>المواعيد</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="card hero-left">
+        <div>
+          <div class="kicker">
+            <span class="tag gold">تصميم فاخر</span>
+            <span class="tag">متجاوب بالكامل</span>
+            <span class="tag">بحث + فلترة</span>
+            <span class="tag">تقدّم بصري</span>
+          </div>
+
+          <h2 class="title">مواعيد صرف مكافأة الطلاب لعام 2026</h2>
+          <p class="subtitle">
+            لوحة واحدة تختصر لك كل شيء: <b>الموعد القادم</b>، العدّاد، ونسبة التقدّم حتى اكتمال الصرف،
+            مع بحث فوري وفلترة حسب الشهر.
+          </p>
+
+          <div class="hero-actions">
+            <button class="btn primary" id="btnCopyNext"><span class="ico">⎘</span>نسخ الموعد القادم</button>
+            <button class="btn" id="btnToday"><span class="ico">🗓</span>شهر اليوم</button>
+            <button class="btn" id="btnReset"><span class="ico">↺</span>إعادة ضبط</button>
+          </div>
+        </div>
+
+        <div class="note">
+          <b>تنبيه:</b> هذه الصفحة <b>غير رسمية</b> (Un-official) ومخصصة للتنظيم فقط.
+          للتأكيد النهائي اعتمد على القنوات الرسمية.
+        </div>
+      </div>
+
+      <aside class="card hero-right" aria-label="لوحة الموعد القادم">
+        <div class="nextBox">
+          <div class="nextTop">
+            <div>
+              <h3>الصرف القادم</h3>
+              <p id="nextMeta">جارٍ التحميل…</p>
+            </div>
+            <div class="badge good" id="nextBadge"><span class="ico">✓</span>قريب</div>
+          </div>
+
+          <!-- Progress ring -->
+          <div class="ringWrap" aria-label="تقدّم الفترة حتى الصرف القادم">
+            <div class="ring" id="ring" style="--p: 0deg;">
+              <div class="ringContent">
+                <b id="ringPct">0%</b>
+                <span>اكتمال الفترة</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="countdown" aria-label="العدّاد التنازلي">
+            <div class="cd"><b id="d">—</b><span>يوم</span></div>
+            <div class="cd"><b id="h">—</b><span>ساعة</span></div>
+            <div class="cd"><b id="m">—</b><span>دقيقة</span></div>
+            <div class="cd"><b id="s">—</b><span>ثانية</span></div>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="mini">
+            <span><strong>قاعدة التقديم/التأخير:</strong></span>
+            <span>إذا وافق يوم <strong>27</strong> (الجمعة) → الصرف (الخميس قبلها).</span>
+            <span>إذا وافق يوم <strong>27</strong> (السبت) → الصرف (الأحد بعدها).</span>
+          </div>
+        </div>
+
+        <div class="nextBox">
+          <div class="nextTop">
+            <div>
+              <h3>فلترة سريعة</h3>
+              <p>اكتب كلمة أو اختر شهر… والنتيجة مباشرة.</p>
+            </div>
+            <div class="badge warn"><span class="ico">⚡</span>فوري</div>
+          </div>
+
+          <select class="select" id="monthSelect" aria-label="اختر شهر ميلادي">
+            <option value="">كل الأشهر</option>
+          </select>
+
+          <div class="input" aria-label="بحث">
+            <span class="ico">⌕</span>
+            <input id="searchInput" placeholder="ابحث بالشهر/اليوم/التاريخ…"/>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="card section" id="schedule">
+      <div class="sectionHead">
+        <div>
+          <h2>جدول مواعيد الصرف</h2>
+          <p>
+            على الجوال: يظهر بشكل بطاقات واضحة بدون أي تمرير أفقي.
+            على الكمبيوتر: يظهر كجدول احترافي.
+          </p>
+          <div class="controls">
+            <select class="select" id="monthSelect2" aria-label="فلترة ثانية للشهر">
+              <option value="">فلترة الشهر (اختياري)</option>
+            </select>
+            <div class="input">
+              <span class="ico">⌕</span>
+              <input id="searchInput2" placeholder="بحث إضافي… (اختياري)"/>
+            </div>
+          </div>
+        </div>
+        <div class="pill">
+          <span class="ico">⟡</span>
+          <span id="rowsCount">—</span>
+        </div>
+      </div>
+
+      <!-- Desktop table -->
+      <div class="tableWrap">
+        <table aria-label="جدول مواعيد الصرف (كمبيوتر)">
+          <thead>
+            <tr>
+              <th>الشهر الميلادي</th>
+              <th>اليوم</th>
+              <th>التاريخ الميلادي</th>
+              <th>الشهر الهجري</th>
+              <th>التاريخ الهجري</th>
+            </tr>
+          </thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+
+      <!-- Mobile cards -->
+      <div class="cards" id="cards" aria-label="مواعيد الصرف (جوال)"></div>
+
+      <div class="note">
+        <b>ملاحظة:</b> قد تتغير المواعيد حسب التحديثات الرسمية أو الإجراءات البنكية.
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footerBox">
+      <div class="rights">
+        <span class="kfu">© <span id="yearNow"></span> — مكافأة طلاب جامعة الملك فيصل</span>
+        <span>•</span>
+        <span>جميع الحقوق محفوظة</span>
+      </div>
+      <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+        <span class="pill"><span class="ico">🔒</span>بدون تتبّع</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- About Modal (تعريف عنك) -->
+  <div class="modal-backdrop" id="aboutBackdrop" role="dialog" aria-modal="true" aria-label="تعريف">
+    <div class="modal">
+      <header>
+        <div class="modalHead">
+          <h3>نبذة وتعريف</h3>
+          <button class="close" id="btnCloseModal">إغلاق</button>
+        </div>
+      </header>
+      <div class="modalBody">
+        <p>
+          أهلاً، أنا <b>فهد القحطاني</b> — طالب في <b>جامعة الملك فيصل</b>،
+          <b>كلية العلوم الزراعية والأغذية</b>.
+          أقدّم خدمات طلابية شاملة بأسلوب واضح واحترافي، وأساعد في حلول المشكلات الطلابية
+          وشرح أي أمر يخص الجامعة — من الأنظمة والإجراءات إلى الإرشادات والخدمات الإلكترونية.
+        </p>
+
+        <ul>
+          <li><b>حلول للمشكلات الطلابية:</b> توجيه عملي + خطوات واضحة للوصول للحل.</li>
+          <li><b>شرح الخدمات:</b> مكافأة، تسجيل، جداول، بوابات الجامعة، وإجراءات شائعة.</li>
+          <li><b>تنظيم ومتابعة:</b> تبسيط المطلوب وتحديد المسار الصحيح بسرعة.</li>
+        </ul>
+
+        <div class="note" style="margin-top:12px;">
+          <b>للتواصل عبر واتساب:</b>
+          <span style="color: rgba(255,255,255,.88); font-weight:950;">+966535964292</span>
+        </div>
+
+        <p style="margin-top:12px; color: rgba(255,255,255,.70);">
+          * يتم تقديم المساعدة بما يتوافق مع الأنظمة، والمرجع النهائي دائمًا هو القنوات الرسمية للجامعة.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ====== بيانات 2026 (ثابتة) ======
+    // السنة الجاية لازم تغيّر هذه القائمة أو نخليها تقرأ من ملف JSON/لوحة تحكم
+    const schedule = [
+      { gMonth:"يناير",    day:"الثلاثاء", gDate:"27/01/2026", hMonth:"شعبان",       hDate:"08/08/1447" },
+      { gMonth:"فبراير",   day:"الخميس",   gDate:"26/02/2026", hMonth:"رمضان",       hDate:"09/09/1447" },
+      { gMonth:"مارس",     day:"الخميس",   gDate:"26/03/2026", hMonth:"شوال",        hDate:"07/10/1447" },
+      { gMonth:"أبريل",    day:"الاثنين",  gDate:"27/04/2026", hMonth:"ذو القعدة",   hDate:"10/11/1447" },
+      { gMonth:"مايو",     day:"الأحد",    gDate:"24/05/2026", hMonth:"ذو الحجة",    hDate:"07/12/1447" },
+      { gMonth:"يونيو",    day:"الأحد",    gDate:"28/06/2026", hMonth:"محرم",        hDate:"13/01/1448" },
+      { gMonth:"يوليو",    day:"الاثنين",  gDate:"27/07/2026", hMonth:"صفر",         hDate:"13/02/1448" },
+      { gMonth:"أغسطس",    day:"الخميس",   gDate:"27/08/2026", hMonth:"ربيع الأول",  hDate:"14/03/1448" },
+      { gMonth:"سبتمبر",   day:"الأحد",    gDate:"27/09/2026", hMonth:"ربيع الثاني", hDate:"16/04/1448" },
+      { gMonth:"أكتوبر",   day:"الثلاثاء", gDate:"27/10/2026", hMonth:"جماد الأول",  hDate:"16/05/1448" },
+      { gMonth:"نوفمبر",   day:"الخميس",   gDate:"26/11/2026", hMonth:"جماد الآخرة", hDate:"16/06/1448" },
+      { gMonth:"ديسمبر",   day:"الأحد",    gDate:"27/12/2026", hMonth:"رجب",         hDate:"18/07/1448" }
+    ];
+
+    const tbody = document.getElementById("tbody");
+    const cards = document.getElementById("cards");
+    const rowsCount = document.getElementById("rowsCount");
+
+    const monthSelect = document.getElementById("monthSelect");
+    const searchInput = document.getElementById("searchInput");
+
+    const monthSelect2 = document.getElementById("monthSelect2");
+    const searchInput2 = document.getElementById("searchInput2");
+
+    const nextMeta = document.getElementById("nextMeta");
+    const nextBadge = document.getElementById("nextBadge");
+
+    const yearNow = document.getElementById("yearNow");
+    const dEl = document.getElementById("d");
+    const hEl = document.getElementById("h");
+    const mEl = document.getElementById("m");
+    const sEl = document.getElementById("s");
+
+    const ring = document.getElementById("ring");
+    const ringPct = document.getElementById("ringPct");
+
+    function parseDateDMY(str){
+      const [dd,mm,yy] = str.split("/").map(n=>parseInt(n,10));
+      return new Date(yy, mm-1, dd, 0,0,0,0);
+    }
+    function pad2(n){ return String(n).padStart(2,"0"); }
+
+    function renderTable(list){
+      tbody.innerHTML = "";
+      for(const r of list){
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td><span class="chip gold">${r.gMonth}</span></td>
+          <td><span class="chip green">${r.day}</span></td>
+          <td><span class="chip">${r.gDate}</span></td>
+          <td><span class="chip">${r.hMonth}</span></td>
+          <td><span class="chip">${r.hDate}</span></td>
+        `;
+        tbody.appendChild(tr);
+      }
+    }
+
+    function renderCards(list){
+      cards.innerHTML = "";
+      for(const r of list){
+        const el = document.createElement("div");
+        el.className = "payCard";
+        el.innerHTML = `
+          <div class="payTop">
+            <div>
+              <div class="payTitle">${r.gMonth} • ${r.day}</div>
+              <div class="paySub">التاريخ الميلادي: <b style="color:rgba(255,255,255,.92)">${r.gDate}</b></div>
+            </div>
+            <span class="chip gold">${r.hMonth}</span>
+          </div>
+          <div class="grid">
+            <div class="kv"><span>اليوم</span><b>${r.day}</b></div>
+            <div class="kv"><span>ميلادي</span><b>${r.gDate}</b></div>
+            <div class="kv"><span>هجري</span><b>${r.hDate}</b></div>
+            <div class="kv"><span>الشهر الهجري</span><b>${r.hMonth}</b></div>
+          </div>
+        `;
+        cards.appendChild(el);
+      }
+    }
+
+    function initMonthSelect(){
+      const months = [...new Set(schedule.map(x=>x.gMonth))];
+      for(const sel of [monthSelect, monthSelect2]){
+        months.forEach(m=>{
+          const opt = document.createElement("option");
+          opt.value = m;
+          opt.textContent = m;
+          sel.appendChild(opt);
+        });
+      }
+    }
+
+    function applyFilters(){
+      const selectedMonth = (monthSelect.value || monthSelect2.value || "");
+      const q = ((searchInput.value || "") + " " + (searchInput2.value || "")).trim().toLowerCase();
+
+      let filtered = schedule.slice();
+      if(selectedMonth){
+        filtered = filtered.filter(r => r.gMonth === selectedMonth);
+      }
+      if(q.trim()){
+        filtered = filtered.filter(r => {
+          const blob = `${r.gMonth} ${r.day} ${r.gDate} ${r.hMonth} ${r.hDate}`.toLowerCase();
+          return blob.includes(q);
+        });
+      }
+
+      renderTable(filtered);
+      renderCards(filtered);
+      rowsCount.textContent = `${filtered.length} موعد`;
+    }
+
+    function findNextPayout(){
+      const now = new Date();
+      const today0 = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
+
+      const upcoming = schedule
+        .map(r => ({...r, dt: parseDateDMY(r.gDate)}))
+        .filter(r => r.dt.getTime() >= today0)
+        .sort((a,b)=>a.dt-b.dt);
+
+      // إذا انتهت سنة 2026: نرجع آخر موعد
+      return upcoming[0] || schedule.map(r=>({...r, dt: parseDateDMY(r.gDate)})).sort((a,b)=>a.dt-b.dt).slice(-1)[0];
+    }
+
+    function findPrevPayout(next){
+      const all = schedule.map(r => ({...r, dt: parseDateDMY(r.gDate)})).sort((a,b)=>a.dt-b.dt);
+      const idx = all.findIndex(x => x.gDate === next.gDate);
+      if(idx > 0) return all[idx-1];
+      return all[0];
+    }
+
+    function badgeForDiff(ms){
+      const dayMs = 24*60*60*1000;
+      const days = Math.floor(ms/dayMs);
+      if(ms <= 0) return { cls:"good", text:"حان الموعد", icon:"✓" };
+      if(days <= 7) return { cls:"good", text:"قريب جدًا", icon:"✓" };
+      if(days <= 21) return { cls:"warn", text:"قريب", icon:"⚡" };
+      return { cls:"bad", text:"بعيد", icon:"⏳" };
+    }
+
+    let next = null;
+    function updateNextBox(){
+      next = findNextPayout();
+      const dt = next.dt;
+
+      const weekday = new Intl.DateTimeFormat("ar-SA", { weekday:"long" }).format(dt);
+      const pretty = new Intl.DateTimeFormat("ar-SA", { year:"numeric", month:"long", day:"numeric" }).format(dt);
+      nextMeta.textContent = `الموعد: ${pretty} • (${weekday}) — ${next.gMonth} / ${next.gDate}`;
+
+      const now = new Date();
+      const diff = dt.getTime() - now.getTime();
+
+      const b = badgeForDiff(diff);
+      nextBadge.className = `badge ${b.cls}`;
+      nextBadge.innerHTML = `<span class="ico">${b.icon}</span>${b.text}`;
+
+      // Countdown
+      const total = Math.max(0, diff);
+      const sec = Math.floor(total/1000);
+      const days = Math.floor(sec / (24*3600));
+      const hours = Math.floor((sec % (24*3600)) / 3600);
+      const mins = Math.floor((sec % 3600) / 60);
+      const secs = sec % 60;
+
+      dEl.textContent = pad2(days);
+      hEl.textContent = pad2(hours);
+      mEl.textContent = pad2(mins);
+      sEl.textContent = pad2(secs);
+
+      // Progress ring: نسبة اكتمال الفترة بين آخر صرف والقادم
+      const prev = findPrevPayout(next);
+      const start = prev.dt.getTime();
+      const end = dt.getTime();
+      const nowMs = now.getTime();
+
+      const span = Math.max(1, end - start);
+      const done = Math.min(span, Math.max(0, nowMs - start));
+      const pct = Math.round((done / span) * 100);
+
+      ringPct.textContent = `${pct}%`;
+      // conic-gradient uses degrees: 360 * pct/100
+      const deg = Math.round(360 * (pct/100));
+      ring.style.setProperty("--p", `${deg}deg`);
+    }
+
+    // Modal
+    const aboutBackdrop = document.getElementById("aboutBackdrop");
+    const btnAbout = document.getElementById("btnAbout");
+    const btnCloseModal = document.getElementById("btnCloseModal");
+    function openModal(){ aboutBackdrop.classList.add("show"); }
+    function closeModal(){ aboutBackdrop.classList.remove("show"); }
+    btnAbout.addEventListener("click", openModal);
+    btnCloseModal.addEventListener("click", closeModal);
+    aboutBackdrop.addEventListener("click", (e)=>{ if(e.target === aboutBackdrop) closeModal(); });
+    document.addEventListener("keydown", (e)=>{ if(e.key === "Escape") closeModal(); });
+
+    // Buttons
+    document.getElementById("btnScroll").addEventListener("click", ()=>{
+      document.getElementById("schedule").scrollIntoView({behavior:"smooth", block:"start"});
+    });
+    document.getElementById("btnReset").addEventListener("click", ()=>{
+      monthSelect.value = "";
+      monthSelect2.value = "";
+      searchInput.value = "";
+      searchInput2.value = "";
+      applyFilters();
+    });
+    document.getElementById("btnToday").addEventListener("click", ()=>{
+      const now = new Date();
+      const map = ["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليو","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر"];
+      const m = map[now.getMonth()] || "";
+      monthSelect.value = m;
+      monthSelect2.value = m;
+      applyFilters();
+    });
+    document.getElementById("btnCopyNext").addEventListener("click", async ()=>{
+      if(!next) return;
+      const text = `موعد مكافأة الطلاب القادم: ${next.gMonth} - ${next.day} - ${next.gDate} (هجري: ${next.hMonth} ${next.hDate})`;
+      try{
+        await navigator.clipboard.writeText(text);
+        const btn = document.getElementById("btnCopyNext");
+        const old = btn.innerHTML;
+        btn.innerHTML = '<span class="ico">✓</span>تم النسخ';
+        setTimeout(()=> btn.innerHTML = old, 1400);
+      }catch{
+        alert(text);
+      }
+    });
+
+    // Filters listeners
+    monthSelect.addEventListener("change", ()=>{ monthSelect2.value = monthSelect.value; applyFilters(); });
+    monthSelect2.addEventListener("change", ()=>{ monthSelect.value = monthSelect2.value; applyFilters(); });
+    searchInput.addEventListener("input", applyFilters);
+    searchInput2.addEventListener("input", applyFilters);
+
+    // Init
+    yearNow.textContent = new Date().getFullYear();
+    initMonthSelect();
+    applyFilters();
+    updateNextBox();
+    setInterval(updateNextBox, 1000);
+  </script>
+</body>
+</html>
